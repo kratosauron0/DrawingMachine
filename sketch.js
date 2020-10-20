@@ -2,6 +2,7 @@ let drawing = [];
 let images = [];
 let mirror = false;
 let selectedImage = null;
+let showImage = false;
 
 function preload()
 {
@@ -31,7 +32,7 @@ function draw()
 
   // Redraw the canvas
   background(200);
-  if (selectedImage != null)
+  if (selectedImage != null && showImage)
   {
     image(images[selectedImage], 0, 0);
   }
@@ -65,7 +66,8 @@ function keyTyped()
   else if (key === 'c')
   {
     drawing = [];
-    selectedImage = null
+    selectedImage = null;
+    showImage = false;
   }
   else if (key === 'u')
   {
@@ -87,9 +89,10 @@ function keyTyped()
       newImage = int(random(3));
     }
     selectedImage = newImage;
+    showImage = true;
   }
   else if (key === 'h')
   {
-    selectedImage = null;
+    showImage = !showImage;
   }
 }
