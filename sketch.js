@@ -1,12 +1,23 @@
-let array = [];
+let drawing = [];
+let images = [];
 let mirror = false;
+let selectedImage = null;
+
+function preload()
+{
+  for (let k = 0; k < 4; k++)
+  {
+    images[k] = loadImage(`images/img_${k}.jpg`);
+    console.log("Loaded image : " + images[k]);
+  }
+}
 
 function setup()
 {
   createCanvas(600, 600);
   background(200);
 
-  strokeWeight(7);
+  strokeWeight(4);
   noFill();
 }
 
@@ -15,24 +26,30 @@ function draw()
   // Record user input as a drawing
   if (mouseIsPressed)
   {
-    array.push([mouseX, mouseY]);
+    drawing.push([mouseX, mouseY]);
+  }
+
+  // Redraw the canvas
+  background(200);
+  if (selectedImage != null)
+  {
+    image(images[selectedImage], 0, 0);
   }
 
   // Display the drawing
-  background(200);
   beginShape();
-  for (let i = 0; i < array.length; i++)
+  for (let i = 0; i < drawing.length; i++)
   {
-    curveVertex(array[i][0], array[i][1])
+    curveVertex(drawing[i][0], drawing[i][1])
   }
   endShape();
 
   if (mirror)
   {
     beginShape();
-    for (let i = 0; i < array.length; i++)
+    for (let i = 0; i < drawing.length; i++)
     {
-      curveVertex(600 - array[i][0], array[i][1])
+      curveVertex(600 - drawing[i][0], drawing[i][1])
     }
     endShape();
   }
@@ -47,17 +64,28 @@ function keyTyped()
   }
   else if (key === 'c')
   {
-    array = [];
+    drawing = [];
+    selectedImage = null
   }
   else if (key === 'u')
   {
-    for (let i = 0; i < 10 && array.length > 0; i++)
+    for (let i = 0; i < 10 && drawing.length > 0; i++)
     {
-      array.pop();
+      drawing.pop();
     }
   }
   else if (key === 'm')
   {
     mirror = !mirror;
+  }
+  else if (key === 'p')
+  {
+    // Pick a different image from the current loaded one
+    let newImage = selectedImage;
+    while (newImage == selectedImage)
+    {
+      newImage = int(random(3));
+    }
+    selectedImage = newImage;
   }
 }
