@@ -88,4 +88,8 @@ function keyTyped()
     }
     selectedImage = newImage;
   }
+  else if (key === 'h')
+  {
+    selectedImage = null;
+  }
 }
