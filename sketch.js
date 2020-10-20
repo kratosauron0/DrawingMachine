@@ -16,6 +16,7 @@ function setup() {
   background(240);
 
   selected = int(random(images.length));
+  image (images[selected],0,0);
 
   strokeWeight(7);
   noFill();
@@ -25,23 +26,8 @@ function setup() {
 function draw() {
 
   if (mouseIsPressed){
-    //line(mouseX, mouseY, pmouseX, pmouseY);
-    array.push([mouseX, mouseY]);
-
-    //stroke(map(mouseX, 0, 600, 0, 255, true));
-    //line(width - mouseX, height - mouseY, width - pmouseX, height - pmouseY );
-    //line(mouseX, mouseY, pmouseX, pmouseY );
+    line(pmouseX, pmouseY, mouseX, mouseY);
   }
-
-
-  image (images[selected],0,0);
-
-  beginShape();
-  for(let i = 0; i < array.length; i++){
-    //line(array[i][0], array [i][1], array[i + 1][0], array[i + 1][1]);
-    curveVertex(array[i][0], array [i][1])
-  }
-  endShape();
 
 
 }
