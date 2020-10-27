@@ -42,6 +42,8 @@ function keyTyped(){
   } else if (key ==='c') {
     //Clear the image
     clear();
+    background(240);
+    image (images[selected],0,0);
   }
 
   return false;
