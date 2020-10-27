@@ -1,6 +1,7 @@
 let array = [];
 let images = [];
 let selected;
+let colorPicker;
 
 function preload() {
   // preload() runs once
@@ -21,15 +22,16 @@ function setup() {
   strokeWeight(7);
   noFill();
 
+  colorPicker = createColorPicker('#000000');
+  colorPicker.parent('colorPicker');
 }
 
 function draw() {
 
+  stroke(colorPicker.color());
   if (mouseIsPressed){
     line(pmouseX, pmouseY, mouseX, mouseY);
   }
-
-
 }
 
 function keyTyped(){
