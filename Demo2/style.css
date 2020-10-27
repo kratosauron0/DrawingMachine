@@ -3,7 +3,6 @@ html {
   padding 0;
 }
 
-
 body {
   background-image: url('WoodBackground.png');
   margin: 100px auto 0 auto;
@@ -13,13 +12,13 @@ body {
 }
 
 canvas {
-  margin: 0 auto 0 auto;
+  margin: 25px auto 0 auto;
   display: block;
   border: 5px solid black;
 }
+
 h1 {
   font-size: 80px;
-
 }
 
 h2 {
