@@ -39,7 +39,11 @@ function keyTyped(){
   if (key === 's'){
     // Save this image
     saveCanvas(`fileName`, 'png');
+  } else if (key ==='c') {
+    //Clear the image
+    clear();
   }
 
   return false;
+
 }
