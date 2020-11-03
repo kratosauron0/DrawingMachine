@@ -1,6 +1,8 @@
 let array = [];
 let images = [];
 let selected;
+let colorPicker;
+let strokeSlider;
 
 function preload() {
   // preload() runs once
@@ -18,12 +20,22 @@ function setup() {
   selected = int(random(images.length));
   image (images[selected],0,0);
 
-  strokeWeight(7);
-  noFill();
+
+
+  colorPicker = createColorPicker('#000000');
+  colorPicker.parent('colorPicker');
+
+  strokeSlider = createSlider(1,20,7);
+  strokeSlider.style('width','100px');
+  strokeSlider.parent('strokeSlider');
 
 }
 
 function draw() {
+
+  stroke(colorPicker.color());
+  strokeWeight(strokeSlider.value());
+  noFill();
 
   if (mouseIsPressed){
     line(pmouseX, pmouseY, mouseX, mouseY);
